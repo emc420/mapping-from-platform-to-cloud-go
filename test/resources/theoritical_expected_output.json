@@ -1,0 +1,7 @@
+{
+    "type": "myDeviceCommand",
+    "prop1": 10,
+    "prop2": {
+      "prop3": "value"
+    }
+}

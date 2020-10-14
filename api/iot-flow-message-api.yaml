@@ -1,0 +1,748 @@
+openapi: "3.0.0"
+info:
+  version: ${project.version}
+  title: ThingPark X IoT Flow router internal API
+  description: >
+    Defines the internal message exchange by IoT Flow components when ingesting
+    uplinks or pushing downlinks
+servers:
+  - url: https://fake.thingpark.com/
+tags:
+  - name: Message
+    description: >
+      the internal messages exchange by IoT Flow components when ingesting
+      up messages or pushing down messages
+paths:
+  /up-message:
+    post:
+      summary: Creates the IoT Flow up message
+      operationId: upMessage
+      tags:
+        - Message
+      requestBody:
+        description: The IoT Flow up message representation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/upMessage'
+            examples:
+              uplink-in:
+                value:
+                  id: 00000000-000000-00000-000000000
+                  time: "2015-07-09T16:06:38.45+02:00"
+                  type: uplink
+                  origin:
+                    type: binder
+                    id: tpw
+                    connectionId: "1"
+                    time: "2015-07-09T16:06:38.49+02:00"
+                  content:
+                    DevEUI_uplink:
+                      Time: "2015-07-09T16:06:38.49+02:00"
+                      DevEUI: "000000000F1D8693"
+                      FPort: 2
+                      FCntUp: 7011
+                      ADRbit: 1
+                      ACKbit: 1
+                      MType: 4
+                      FCnDn: 11
+                      payload_hex: "0027bd00"
+                      mic_hex: "38e7a3b9"
+                      Lrcid: "00000065"
+                      LrrRSSI: -60.000000
+                      LrrSNR: 9.750000
+                      SpFact: 7
+                      SubBand: G1
+                      Channel: LC2
+                      DevLrrCnt: 2
+                      Lrrid: "08040059"
+                      Late: 0
+                      LrrLAT: 48.874931
+                      LrrLON: 2.333673
+                      Lrrs:
+                        - Lrrid: "08040059"
+                          LrrRSSI: -60.000000
+                          LrrSNR: 9.750000
+                          LrrESP: -59.000000
+                        - Lrrid: "33d13a41"
+                          LrrRSSI: -73.000000
+                          LrrSNR: 9.75000
+                          LrrESP: -72.000000
+                      CustomerID: "100000507"
+                      CustomerData:
+                        loc:
+                          lat: 43.58081
+                          lon: 1.4421667
+                        alr:
+                          pro: STL
+                          ver: 1
+                      ModelCfg: 0
+                      InstantPER: 0.02
+                      MeanPER: 0.02
+                      DevAddr: "0405F519"
+                      UplinkDC: 0.001
+                      UplinkDCSubBand: 0.009
+                      DevLocTime: "2015-01-27T10:00:43.336+01:00"
+                      DevLAT: 10.11212
+                      DevLON: 7.44464
+                      DevAlt: 50
+                      DevLocRadius: 100
+                      DevAltRadius: 50
+                      DevNorthVel: 1.0
+                      DevEastVel: 1.0
+                      NwGeolocAlgo: 0
+                      Frequency: 868.3
+                      DynamicClass: B
+                      ClassBPeriodicity: 128
+                  subscriber:
+                    id: "100000507"
+                    realmId: tpx-users-iot-ope
+                  thing:
+                    key: "lorawan:000000000F1D8693"
+                  packet:
+                    type: lorawan
+                    meta:
+                      fPort: 2
+                    raw: "0027bd00"
+              uplink-out:
+                value:
+                  id: 00000000-000000-00000-000000000
+                  type: uplink
+                  origin:
+                    type: binder
+                    id: tpw
+                    connectionId: "1"
+                  content:
+                    DevEUI_uplink:
+                      Time: "2015-07-09T16:06:38.49+02:00"
+                      DevEUI: "000000000F1D8693"
+                      FPort: 2
+                      FCntUp: 7011
+                      ADRbit: 1
+                      ACKbit: 1
+                      MType: 4
+                      FCnDn: 11
+                      payload_hex: "0027bd00"
+                      mic_hex: "38e7a3b9"
+                      Lrcid: "00000065"
+                      LrrRSSI: -60.000000
+                      LrrSNR: 9.750000
+                      SpFact: 7
+                      SubBand: G1
+                      Channel: LC2
+                      DevLrrCnt: 2
+                      Lrrid: "08040059"
+                      Late: 0
+                      LrrLAT: 48.874931
+                      LrrLON: 2.333673
+                      Lrrs:
+                        - Lrrid: "08040059"
+                          LrrRSSI: -60.000000
+                          LrrSNR: 9.750000
+                          LrrESP: -59.000000
+                        - Lrrid: "33d13a41"
+                          LrrRSSI: -73.000000
+                          LrrSNR: 9.75000
+                          LrrESP: -72.000000
+                      CustomerID: "100000507"
+                      CustomerData:
+                        loc:
+                          lat: 43.58081
+                          lon: 1.4421667
+                        alr:
+                          pro: STL
+                          ver: 1
+                      ModelCfg: 0
+                      InstantPER: 0.02
+                      MeanPER: 0.02
+                      DevAddr: "0405F519"
+                      UplinkDC: 0.001
+                      UplinkDCSubBand: 0.009
+                      DevLocTime: "2015-01-27T10:00:43.336+01:00"
+                      DevLAT: 10.11212
+                      DevLON: 7.44464
+                      DevAlt: 50
+                      DevLocRadius: 100
+                      DevAltRadius: 50
+                      DevNorthVel: 1.0
+                      DevEastVel: 1.0
+                      NwGeolocAlgo: 0
+                      Frequency: 868.3
+                      DynamicClass: B
+                      ClassBPeriodicity: 128
+                  subAccount:
+                    id: "100000507.eu"
+                    realmId: tpx-users-iot-ope
+                  subscriber:
+                    id: "100000507"
+                    realmId: tpx-users-iot-ope
+                  thing:
+                    key: "lorawan:000000000f1d8693"
+                    model:
+                      producerId: elsys
+                      moduleId: field-test
+                      version: 1
+                    application:
+                      producerId: elsys
+                      moduleId: generic
+                      version: 1
+                    tags:
+                      - value1
+                      - value2
+                  points:
+                    temperature:
+                      type: double
+                      unitId: Cel
+                      records:
+                        - eventTime: "2015-07-09T16:06:38.49+02:00"
+                          value: 27.5
+                    humidity:
+                      type: double
+                      unitId: "%RH"
+                      records:
+                        - eventTime: "2015-07-09T16:06:38.49+02:00"
+                          value: 80.0
+                  packet:
+                    type: lorawan
+                    meta:
+                      fPort: 2
+                    raw: "0027bd00"
+                    message:
+                      temperature: 27.5
+                      humidity: 80.0
+              downlink-sent-in:
+                value:
+                  id: 00000000-000000-00000-000000000
+                  type: downlinkSent
+                  origin:
+                    type: binder
+                    id: tpw
+                    connectionId: "1"
+                    time: "2015-01-27T10:00:46.336+01:00"
+                  content:
+                    DevEUI_downlink_Sent:
+                      Time: "2015-01-27T10:00:46.336+01:00"
+                      DevEUI: "000000000F1D8693"
+                      FPort: 2
+                      FCntUp: 7022
+                      FCntDn: 22
+                      Lrcid: "00000000"
+                      SpFact: 7
+                      SubBand: G1
+                      Channel: LC3
+                      Lrrid: "0000000a"
+                      DeliveryStatus: 1
+                      DeliveryFailedCause1: A3
+                      DeliveryFailedCause2: "00"
+                      CustomerID: "100000507"
+                      CustomerData:
+                        loc:
+                          lat: "43.58081"
+                          lon: "1.4421667"
+                        alr:
+                          pro: "STL"
+                          ver: "1"
+                      TransmissionSlot: 1
+                      Frequency: 868.5
+                      CorrelationID: "4434704901C7450B"
+                  subscriber:
+                    id: "100000507"
+                    realmId: tpx-users-iot-ope
+                  thing:
+                    key: "lorawan:000000000f1d8693"
+              downlink-sent-out:
+                value:
+                  id: 00000000-000000-00000-000000000
+                  type: downlinkSent
+                  origin:
+                    type: binder
+                    id: tpw
+                    connectionId: "1"
+                    time: "2015-01-27T10:00:46.336+01:00"
+                  content:
+                    DevEUI_downlink_Sent:
+                      Time: "2015-01-27T10:00:46.336+01:00"
+                      DevEUI: "000000000F1D8693"
+                      FPort: 2
+                      FCntUp: 7022
+                      FCntDn: 22
+                      Lrcid: "00000000"
+                      SpFact: 7
+                      SubBand: G1
+                      Channel: LC3
+                      Lrrid: "0000000a"
+                      DeliveryStatus: 1
+                      DeliveryFailedCause1: A3
+                      DeliveryFailedCause2: "00"
+                      CustomerID: "100000507"
+                      CustomerData:
+                        loc:
+                          lat: "43.58081"
+                          lon: "1.4421667"
+                        alr:
+                          pro: "STL"
+                          ver: "1"
+                      TransmissionSlot: 1
+                      Frequency: 868.5
+                      CorrelationID: "4434704901C7450B"
+                  subAccount:
+                    id: "100000507.eu"
+                    realmId: tpx-users-iot-ope
+                  subscriber:
+                    id: "100000507"
+                    realmId: tpx-users-iot-ope
+                  thing:
+                    key: "lorawan:000000000f1d8693"
+                    model:
+                      producerId: elsys
+                      moduleId: field-test
+                      version: 1
+                    application:
+                      producerId: elsys
+                      moduleId: generic
+                      version: 1
+                    tags:
+                      - value1
+                      - value2
+      responses:
+        '202':
+          description: Full representation of the created thing resource
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '409':
+          $ref: '#/components/responses/conflict'
+        default:
+          $ref: '#/components/responses/error'
+  /down-message:
+    post:
+      summary: Creates the IoT Flow down message
+      operationId: downMessage
+      tags:
+        - Message
+      requestBody:
+        description: The IoT Flow down message representation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/downMessage'
+            examples:
+              downlink-in:
+                value:
+                  id: 00000000-000000-00000-000000000
+                  type: deviceDownlink
+                  origin:
+                    type: connector
+                    id: aws-iot
+                    connectionId: "1"
+                    time: "2015-07-09T16:06:38.49+02:00"
+                  content:
+                    DevEUI: "000000000F1D8693"
+                    FPort: 1
+                    Payload: "00"
+                    AS_ID: app1.sample.com
+                    Time: "2016-01-11T14:28:00.333+02:00"
+                    CorrelationID: "4434704901C7450B"
+                    Token: "ea8f31d2299cbece8e180a3012766c4df15fe3cf2e142d9fdf4035b5894ec886"
+                  command:
+                    id: switchOn
+                  subscriber:
+                    id: "100000507"
+                    realmId: tpx-users-iot-ope
+                  thing:
+                    key: "lorawan:000000000F1D8693"
+                  packet:
+                    type: lorawan
+                    meta:
+                      fPort: 1
+                    raw: "00"
+      responses:
+        '202':
+          description: Full representation of the created thing resource
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '409':
+          $ref: '#/components/responses/conflict'
+        default:
+          $ref: '#/components/responses/error'
+components:
+  schemas:
+    upOriginType:
+      description: >
+        The type of the source IoT Flow component
+      type: string
+      enum:
+        - binder
+        - processor
+    upOrigin:
+      required:
+        - type
+        - id
+        - time
+      description: >
+        The IoT Flow component which initiated this message
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/upOriginType'
+        id:
+          description: The identifier of the source IoT Flow component
+          type: string
+        connectionId:
+          description: The connection identifier of the source IoT Flow component in case it is a binder
+          type: string
+        time:
+          description: The time at which the source component has produced the message in IoT Flow
+          type: string
+          format: date-time
+    downOriginType:
+      description: >
+        The type of the source IoT Flow component
+      type: string
+      enum:
+        - connector
+        - processor
+    downOrigin:
+      required:
+        - type
+        - id
+        - time
+      description: >
+        The IoT Flow component which initiated this message
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/downOriginType'
+        id:
+          description: The identifier of the source IoT Flow component
+          type: string
+        connectionId:
+          description: The connection identifier of the source IoT Flow component in case it is a connector
+          type: string
+        time:
+          description: The time at which the source component has produced the message in IoT Flow
+          type: string
+          format: date-time
+    command:
+      required:
+        - id
+      description: >
+        The command object
+      type: object
+      properties:
+        id:
+          description: The identifier of the command
+          type: string
+        input:
+          description: The input of the message in the json format
+          x-is-json-schema: true
+    account:
+      type: object
+      description: >
+        The ThingPark X account
+      required:
+        - id
+        - realmId
+      properties:
+        id:
+          description: The unique identifier of the ThingPark X account
+          type: string
+        realmId:
+          description: >
+            The identifier of the realm in which resides the ThingPark X
+            account
+          type: string
+    subscriber:
+      description: >
+        The ThingPark subscriber associated to the message
+      type: object
+      required:
+        - id
+        - realmId
+      properties:
+        id:
+          description: The unique identifier of the ThingPark subscriber
+          type: string
+        realmId:
+          description: >
+            The identifier of the realm in which resides the ThingPark
+            subscriber
+          type: string
+    moduleSpec:
+      description: A module description
+      type: object
+      required:
+        - producerId
+        - moduleId
+        - version
+      properties:
+        producerId:
+          description: A unique identifier for the organization owning the module
+          type: string
+        moduleId:
+          description: A unique identifier for the module within the organization
+          type: string
+        version:
+          description: The module version in the semver format (https://semver.org/)
+          type: string
+    thing:
+      type: object
+      required:
+        - key
+      properties:
+        key:
+          type: string
+          description: A unique key identifying a thing within the protocol space
+        model:
+          $ref: '#/components/schemas/moduleSpec'
+        application:
+          $ref: '#/components/schemas/moduleSpec'
+        tags:
+          description: The list of tags associated to the thing
+          type: array
+          items:
+            type: string
+    lorawanPacketMeta:
+      required:
+        - fPort
+      type: object
+      properties:
+        fPort:
+          type: integer
+    messagePacket:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          x-is-discriminator: true
+        raw:
+          type: string
+          format: hexa
+          x-is-binary-schema: true
+        message:
+          type: object
+          x-is-object-schema: true
+      discriminator:
+        propertyName: type
+        mapping:
+          lorawan: '#/components/schemas/lorawanMessagePacket'
+    lorawanMessagePacket:
+      allOf:
+        - $ref: '#/components/schemas/messagePacket'
+        - type: object
+          required:
+            - meta
+          properties:
+            meta:
+              $ref: '#/components/schemas/lorawanPacketMeta'
+    upMessageType:
+      description: The up message type
+      type: string
+      enum:
+        - deviceUplink
+        - deviceDownlinkSent
+        - deviceLocation
+        - deviceNotification
+    upMessageSubType:
+      description: The up message subType
+      type: string
+    downMessageType:
+      description: The down message type
+      type: string
+      enum:
+        - deviceDownlink
+    points:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/point'
+      description: >
+        The latest value of all points in this thing
+    point:
+      type: object
+      required:
+        - records
+      properties:
+        ontologyId:
+          type: string
+          description: The ontologyId of the point
+        type:
+          $ref: '#/components/schemas/pointType'
+        unitId:
+          $ref: '#/components/schemas/pointUnitId'
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/record'
+    pointType:
+      type: string
+      description: The type of the values of this point
+      enum:
+        - string
+        - int64
+        - double
+        - obix
+        - xml
+        - boolean
+        - object
+    pointUnitId:
+      type: string
+      description: The unitId of the point
+    record:
+      type: object
+      required:
+        - eventTime
+      properties:
+        value:
+          type: object
+          description: >
+            The value of this point at the given eventTime
+          x-is-json-schema: true
+        coordinates:
+          type: array
+          items:
+            type: number
+            format: double
+            minItems: 2
+            maxItems: 3
+          description: >
+            The coordinates of this point at the given eventTime
+        eventTime:
+          type: string
+          format: date-time
+          description: The time of the value
+    upMessage:
+      type: object
+      required:
+        - time
+        - type
+        - content
+        - subscriber
+        - origin
+        - thing
+      properties:
+        id:
+          description: >
+            A unique identifier for the IoT Flow message. If not provided it
+            will be generated
+          type: string
+        time:
+          description: >
+            The time at which the message was generated. For example in a deviceUplink it would
+            be the antenna reception time, while for a deviceLocation it would be the time at
+            which the location was computed.
+          type: string
+          format: date-time
+        content:
+          description: The content of the message in the source format (e.g DevEUI_uplink, ...)
+          type: object
+          x-is-object-schema: true
+        type:
+          $ref: '#/components/schemas/upMessageType'
+        subType:
+          $ref: '#/components/schemas/upMessageSubType'
+        origin:
+          $ref: '#/components/schemas/upOrigin'
+        subAccount:
+          $ref: '#/components/schemas/account'
+        subscriber:
+          $ref: '#/components/schemas/subscriber'
+        thing:
+          $ref: '#/components/schemas/thing'
+        points:
+          $ref: '#/components/schemas/points'
+        packet:
+          $ref: '#/components/schemas/messagePacket'
+    downMessage:
+      type: object
+      required:
+        - type
+        - content
+        - subscriber
+        - thing
+        - origin
+        - time
+      properties:
+        id:
+          description: >
+            A unique identifier for the IoT Flow message. If not provided it
+            will be generated
+          type: string
+        time:
+          description: >
+            The time at which the message was generated. For example in a downlink it would
+            be the time at which the user produced the message.
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/downMessageType'
+        content:
+          description: The content of the message in the source format (e.g DevEUI_downlink, ...)
+          type: object
+          x-is-object-schema: true
+        origin:
+          $ref: '#/components/schemas/downOrigin'
+        command:
+          $ref: '#/components/schemas/command'
+        subAccount:
+          $ref: '#/components/schemas/account'
+        subscriber:
+          $ref: '#/components/schemas/subscriber'
+        thing:
+          $ref: '#/components/schemas/thing'
+        packet:
+          $ref: '#/components/schemas/messagePacket'
+    errorInfo:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Provides an internal error code if any
+        message:
+          type: string
+          description: Provides a message describing the error
+  responses:
+    badRequest:
+      description: The received request body is badly formatted or contains bad values
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    unauthorized:
+      description: The user is not authorized to access the resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    notActivated:
+      description: The service is not activated for the current user
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    notFound:
+      description: The service is not activated for the current user or the resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    conflict:
+      description: The resource already exists with the given id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    mediaUnsupported:
+      description: The received media type is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
+    error:
+      description: Any error when processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorInfo'
